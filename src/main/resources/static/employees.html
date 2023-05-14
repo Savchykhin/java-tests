@@ -1,0 +1,99 @@
+<html>
+
+<head>
+	<title>Employee CRUD</title>
+	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script type="text/javascript" language="javascript"
+		src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" language="javascript"
+		src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+	<script>
+		$(window).ready(
+			function () {
+				$.get("/employee", function (data, status) {
+					data.forEach(function (d, i) {
+						var content = "<tr><td>" + d.id;
+						content += "</td><td>" + d.name;
+						content += "</td><td>" + d.phone;
+						content += "</td><td>" + d.dept.name;
+						content += "</td><td><a class='btn btn-primary' href='employee-form.html?id=" + d.id
+							+ "'>Edit</a> ";
+						content += "<a class='btn btn-danger' onClick=remove(" + d.id
+							+ ") href='#'>Delete</a>";
+						content += "</td></tr>";
+						$('#data').append(content);
+					})
+					$('#tb-employee').DataTable();
+				});
+			});
+		function remove(id) {
+			$.ajax({
+				url: "/employee/" + id,
+				type: 'DELETE',
+				success: function (data, status) {
+					if (status == "success") {
+						alert("Record Deleted")
+						window.location.replace("/")
+					} else {
+						alert(status + " Something went wrong")
+					}
+				}
+			})
+		}
+	</script>
+</head>
+
+<body>
+
+	<header>
+		<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="javascript:void(0)">SampleApp</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="mynavbar">
+					<ul class="navbar-nav me-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="/index.html">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/departments.html">Departments</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/employees.html">Employees</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<div class="container">
+		<nav class="navbar">
+			<div class="navbar-header">
+				<h1>Employee CRUD Application</h1>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a class="btn btn-success" href="employee-form.html">Add New Employee</a></li>
+			</ul>
+		</nav>
+		<table id="tb-employee" class="table table-striped">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Name</th>
+					<th>Phone</th>
+					<th>Department</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody id="data">
+
+			</tbody>
+		</table>
+	</div>
+</body>
+
+</html>
