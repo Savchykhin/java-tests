@@ -9,6 +9,7 @@ public class BaseClass {
         System.out.println("Open browser");
         System.setProperty("webdriver.gecko.driver","/Users/alex/Downloads/employee-crud/bin/geckodriver");
         driver = new FirefoxDriver();
+        driver.get("http://localhost:8000");
     }
 
 	protected void teardown() {

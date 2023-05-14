@@ -5,11 +5,13 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import tests.cucumber.common.BaseClass;
+import tests.pageobjects.HomePage;
 
 import org.assertj.core.api.Assertions;
-import org.openqa.selenium.By;
 
 public class HomePageDefinitions extends BaseClass {
+
+    HomePage homePage = new HomePage();
 
     @Before
     public void setup() {
@@ -18,14 +20,14 @@ public class HomePageDefinitions extends BaseClass {
 
     @Given("Home-page: open")
     public void home_page() {
-        driver.get("http://localhost:8000");
+        Assertions.assertThat(driver.getTitle()).isEqualTo("Employee CRUD");
     }
 
     @Then("Home-page: verify")
     public void verify_home_page() {
-        Assertions.assertThat(driver.getTitle()).isEqualTo("Employee CRUD");
-        Assertions.assertThat(driver.findElement(By.cssSelector(".navbar-header > h1")).getText())
+        Assertions.assertThat(driver.findElement(homePage.homePageHeader).getText())
                 .isEqualTo("Welcome, Sample App");
+                //to do verify nav bar and buttons 
     }
 
     @After
