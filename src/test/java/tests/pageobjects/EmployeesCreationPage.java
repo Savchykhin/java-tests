@@ -1,10 +1,11 @@
 package tests.pageobjects;
 
 import org.assertj.core.api.Assertions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.PageFactory;
 
 public class EmployeesCreationPage {
 
@@ -12,43 +13,55 @@ public class EmployeesCreationPage {
     private HomePage homePage;
     private EmployeesPage employeesPage;
 
+    @FindBy(id = "emp")
+    WebElement newEmployeeForm;
+
+    @FindBy(id = "name")
+    WebElement nameInput;
+
+    @FindBy(id = "sel-dept")
+    WebElement departmentSelect;
+
+    @FindBy(id = "phone")
+    WebElement phoneInput;
+
+    @FindBy(id = "save")
+    WebElement saveButton;
+
+    @FindBy(xpath = "//option[text()='Marketing']")
+    WebElement marketingOption;
+
     public EmployeesCreationPage(WebDriver driver) {
         this.driver = driver;
-        homePage = new HomePage(driver);
-        employeesPage = new EmployeesPage(driver);
+        this.homePage = new HomePage(driver);
+        this.employeesPage = new EmployeesPage(driver);
+        PageFactory.initElements(driver, this);
     }
 
-    public By newEmployeeForm = By.id("emp");
-    public By departmentSelect = By.id("sel-dept");
-    public By nameInput = By.id("name");
-    public By phoneInput = By.id("phone");
-    public By marketingOption = By.xpath("//option[text()='Marketing']");
-    public By saveButton = By.id("save");
-
     public void navigate() {
-        driver.findElement(homePage.employeesNavButton).click();
-        Assertions.assertThat(driver.findElement(employeesPage.pageHeader).isDisplayed())
+        homePage.employeesNavButton.click();
+        Assertions.assertThat(employeesPage.pageHeader.isDisplayed())
                 .as("employeesPage.pageHeader is not visible.").isTrue();
-        driver.findElement(employeesPage.newEmployeeBtn).click();
-        Assertions.assertThat(driver.findElement(this.newEmployeeForm).isDisplayed())
+        employeesPage.newEmployeeBtn.click();
+        Assertions.assertThat(newEmployeeForm.isDisplayed())
                 .as("employeesPage.newEmployeeForm is not visible.").isTrue();
     }
 
     public void selectEmployeeDepartment(String department) {
-        WebElement departmentSelectEl = driver.findElement(this.departmentSelect);
+        WebElement departmentSelectEl = departmentSelect;
         Select departmentSelect = new Select(departmentSelectEl);
         departmentSelect.selectByVisibleText(department);
     }
 
     public void enterEmployeeName(String testName) {
-        driver.findElement(this.nameInput).sendKeys(testName);
+        nameInput.sendKeys(testName);
     }
 
     public void enterEmployeePhone(String testPhone) {
-        driver.findElement(this.phoneInput).sendKeys(testPhone);
+        phoneInput.sendKeys(testPhone);
     }
 
     public void clickSaveButton() {
-        driver.findElement(this.saveButton).click();
+        saveButton.click();
     }
 }

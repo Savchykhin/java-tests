@@ -26,7 +26,7 @@ public class HomePageDef extends BaseClass {
 
     @Then("Home-page: verify")
     public void verify_home_page() {
-        Assertions.assertThat(driver.findElement(homePage.homePageHeader).getText())
+        Assertions.assertThat(homePage.getHomePageHeaderText())
                 .isEqualTo("Welcome, Sample App");
     }
 

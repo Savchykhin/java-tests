@@ -18,7 +18,7 @@ public class HomePageTest extends TestController {
     @Test
     public void homePage() {
         Assertions.assertThat(driver.getTitle()).isEqualTo("Employee CRUD");
-        Assertions.assertThat(driver.findElement(homePage.homePageHeader).getText())
+        Assertions.assertThat(homePage.getHomePageHeaderText())
                 .isEqualTo("Welcome, Sample App");
     }
 

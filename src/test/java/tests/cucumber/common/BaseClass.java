@@ -7,7 +7,7 @@ public class BaseClass {
 
     protected void setupDriver() {
         System.out.println("Open browser");
-        System.setProperty("webdriver.gecko.driver","/Users/alex/Downloads/employee-crud/bin/geckodriver");
+        System.setProperty("webdriver.gecko.driver","/path/to/geckodriver");
         driver = new FirefoxDriver();
         driver.get("http://localhost:8000");
     }
