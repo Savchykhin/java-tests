@@ -33,8 +33,8 @@ public class EmployeesCreationPage {
 
     public EmployeesCreationPage(WebDriver driver) {
         this.driver = driver;
-        this.homePage = new HomePage(driver);
-        this.employeesPage = new EmployeesPage(driver);
+        homePage = new HomePage(driver);
+        employeesPage = new EmployeesPage(driver);
         PageFactory.initElements(driver, this);
     }
 
