@@ -1,15 +1,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Selenium-SimpleApp-Suite" verbose="1">
-   <!-- <test name="All Tests">
-        <packages>
-            <package name="tests.selenium" />
-        </packages>
-    </test> -->
     <test name="Smoke">
         <classes>
             <class name="tests.selenium.HomePageTest" />
-            <class name="tests.selenium.EmployeesPageTest" />
+            <class name="tests.selenium.EmployeeCreateTest" />
+            <class name="tests.selenium.EmployeeSearchTest" />
         </classes>
 
     </test>

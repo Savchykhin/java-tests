@@ -5,7 +5,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class BaseClass {
     protected WebDriver driver;
 
-    protected void setup() {
+    protected void setupDriver() {
         System.out.println("Open browser");
         System.setProperty("webdriver.gecko.driver","/Users/alex/Downloads/employee-crud/bin/geckodriver");
         driver = new FirefoxDriver();

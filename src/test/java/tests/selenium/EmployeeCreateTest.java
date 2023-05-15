@@ -7,9 +7,11 @@ import org.testng.annotations.Test;
 import tests.pageobjects.EmployeesCreationPage;
 import tests.pageobjects.EmployeesPage;
 
-public class EmployeesPageTest extends TestController {
+public class EmployeeCreateTest extends TestController {
     private EmployeesPage employeesPage;
     private EmployeesCreationPage employeesCreationPage;
+    private String testName = "Employee Test Name Selenium";
+    private String testPhone = "987654321";
 
     @BeforeClass
     public void init() {
@@ -21,15 +23,17 @@ public class EmployeesPageTest extends TestController {
     public void createEmployee() {
         employeesCreationPage.navigate();
         employeesCreationPage.selectEmployeeDepartment("Marketing");
-        employeesCreationPage.enterEmployeeName(employeesPage.testName);
-        employeesCreationPage.enterEmployeePhone(employeesPage.testPhone);
+        employeesCreationPage.enterEmployeeName(testName);
+        employeesCreationPage.enterEmployeePhone(testPhone);
         employeesCreationPage.clickSaveButton();
         employeesPage.verifyOnEmployeesPage();
-        employeesPage.searchByEmployeesName(employeesPage.testName);
+        employeesPage.typeInSearchField(testName);
+        employeesPage.validateSearchResults(testName);
+        employeesPage.validateEntriesCount(1);
     }
 
     @AfterClass
     public void cleanupEmployees() {
-        employeesPage.deleteEmployee();
+        employeesPage.deleteEmployee(testName);
     }
 }

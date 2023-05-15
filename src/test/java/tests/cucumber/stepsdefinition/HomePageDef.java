@@ -9,17 +9,13 @@ import tests.pageobjects.HomePage;
 
 import org.assertj.core.api.Assertions;
 
-public class HomePageDefinitions extends BaseClass {
+public class HomePageDef extends BaseClass {
 
     private HomePage homePage;
 
-    @Before(order = 0)
+    @Before(value = "@HomePageScenario")
     public void setup() {
-        super.setup();
-    }
-
-    @Before(value = "@HomePageScenario", order = 1)
-    public void init() {
+        super.setupDriver();
         homePage = new HomePage(driver);
     }
 
@@ -32,10 +28,9 @@ public class HomePageDefinitions extends BaseClass {
     public void verify_home_page() {
         Assertions.assertThat(driver.findElement(homePage.homePageHeader).getText())
                 .isEqualTo("Welcome, Sample App");
-                //to do verify nav bar and buttons 
     }
 
-    @After
+    @After(value = "@HomePageScenario")
     public void teardown() {
        super.teardown();
     }

@@ -38,8 +38,6 @@ public class EmployeesCreationPage {
         WebElement departmentSelectEl = driver.findElement(this.departmentSelect);
         Select departmentSelect = new Select(departmentSelectEl);
         departmentSelect.selectByVisibleText(department);
-        String selectedOption = departmentSelectEl.getAttribute("value");
-        assert selectedOption.equals("4") : String.format("Option %s is not selected.", department);
     }
 
     public void enterEmployeeName(String testName) {
