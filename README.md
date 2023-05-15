@@ -1,13 +1,4 @@
-# SpringBoot JQuery CRUD Application
-
-A simple curd application using springboot as backed and jquery html
-
-**software requirement**
-
- - IDE: IntelliJ
-    - IntelliJ -> Open Project
- - IDE: Eclipse:
-   - Eclipse -> Open existing Maven Project  
+# Application
 
  **to run the application:**
 
