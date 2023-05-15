@@ -11,11 +11,16 @@ import org.assertj.core.api.Assertions;
 
 public class HomePageDefinitions extends BaseClass {
 
-    HomePage homePage = new HomePage();
+    private HomePage homePage;
 
-    @Before
+    @Before(order = 0)
     public void setup() {
-       super.setup();
+        super.setup();
+    }
+
+    @Before(value = "@HomePageScenario", order = 1)
+    public void init() {
+        homePage = new HomePage(driver);
     }
 
     @Given("Home-page: open")

@@ -1,6 +1,6 @@
-Feature: Create Employee
+Feature: Employees
 
-    @createEmployee
+    @createEmployeeScenario
     Scenario: Create a new employee
         Given I am on the employee creation page
         When I select employee department

@@ -1,12 +1,19 @@
 package tests.selenium;
 
 import org.assertj.core.api.Assertions;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import tests.pageobjects.HomePage;
 
 public class HomePageTest extends TestController {
-    HomePage homePage = new HomePage();
+
+    private HomePage homePage;
+
+    @BeforeClass
+    public void init() {
+        homePage = new HomePage(driver);
+    }
 
     @Test
     public void homePage() {
